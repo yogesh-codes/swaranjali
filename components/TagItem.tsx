@@ -9,28 +9,28 @@ export type TagItemProps = {
     onTagClick: (isActive: boolean) => void;
 };
 
-const TagItem = ({ title, subTitle, extraText, onTagClick }: TagItemProps) => {
+const TagItem = ({ title, subTitle, onTagClick }: TagItemProps) => {
     const [isActive, setIsActive] = useState<boolean>(false);
 
     const handleOnBlur = () => {
         setIsActive(false);
     };
 
-    const handleOnClick = (e: React.MouseEvent) => {
+    const handleOnClick = () => {
         // e.stopPropagation();
         setIsActive(!isActive);
     };
 
     useLayoutEffect(() => {
         onTagClick(isActive);
-    }, [isActive]);
+    }, [isActive, onTagClick]);
     return (
         <li>
             <button
                 className={`flex flex-row justify-start items-center gap-2 rounded-md  ${
                     isActive ? "bg-amber-300" : "bg-white"
                 }`}
-                onClick={(e) => handleOnClick(e)}
+                onClick={() => handleOnClick()}
                 onBlur={() => handleOnBlur()}
             >
                 <BsPersonCircle className="inline-flex" />

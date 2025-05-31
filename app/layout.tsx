@@ -1,11 +1,8 @@
-import type { Metadata } from "next";
 import "./globals.css";
-import NavBar from "@/components/NavBar";
-import { websiteMainFont, websiteSubFont } from "@/assets/websiteData";
-import DevBorder from "@/sections/DevBorder/DevBorder";
-import { AnimatePresence, motion } from "motion/react";
 
-import PageTransition from "@/components/PageTransition";
+import { websiteSubFont } from "@/assets/websiteData";
+import DevBorder from "@/sections/DevBorder/DevBorder";
+
 import { ResponsiveNavbarDemo } from "@/components/ui/ResponsiveNavBar";
 
 export const metadata = {

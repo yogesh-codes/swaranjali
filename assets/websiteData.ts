@@ -1,9 +1,4 @@
-import {
-    Lavishly_Yours,
-    Dancing_Script,
-    Gloria_Hallelujah,
-    Playfair_Display,
-} from "next/font/google";
+import { Lavishly_Yours, Playfair_Display } from "next/font/google";
 
 import logo from "@/assets/images/logo-transparent.png";
 import heroBannerImg from "@/assets/images/hero-banner.png";

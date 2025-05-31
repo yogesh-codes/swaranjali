@@ -1,6 +1,6 @@
 "use client";
 import React, { useLayoutEffect, useState } from "react";
-import NavItem from "./NavItem";
+
 import NavList from "./NavList";
 import { RxHamburgerMenu } from "react-icons/rx";
 

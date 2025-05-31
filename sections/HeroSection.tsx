@@ -8,11 +8,7 @@ import {
     websiteHeroBannerImg,
 } from "@/assets/websiteData";
 import Image from "next/image";
-import { motion } from "motion/react";
-import OrdinaryHeading from "@/components/OrdinaryHeading";
-import FlyinHeading from "@/components/FlyinHeading";
 import TypewriterFlickerHeading from "@/components/TypewriterFlickerHeading";
-import { cn } from "@/lib/utils";
 
 const HeroSection = () => {
     return (

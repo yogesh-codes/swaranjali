@@ -116,7 +116,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
 };
 
 export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
-    const [hovered, setHovered] = useState<number | null>(null);
+    const [hovered, setHovered] = useState<number | null>(null); // eslint-disable-line @typescript-eslint/no-unused-vars
 
     return (
         <motion.div
@@ -197,7 +197,7 @@ export const MobileNavMenu = ({
     children,
     className,
     isOpen,
-    onClose,
+    onClose, //eslint-disable-line @typescript-eslint/no-unused-vars
 }: MobileNavMenuProps) => {
     return (
         <AnimatePresence>

@@ -1,10 +1,9 @@
-import Link from "next/link";
 import React from "react";
 import NavItem from "./NavItem";
 
-interface NavListProps {}
+//type NavListProps = {}
 
-const NavList = ({}: NavListProps) => {
+const NavList = () => {
     return (
         <>
             {

@@ -1,14 +1,12 @@
-import { performancesData } from "@/assets/performancesData";
+// import { performancesData } from "@/assets/performancesData";
 import { SparklesCore } from "@/components/ui/sparkles";
 import HeroSection from "@/sections/HeroSection";
 import PerformanceSection from "@/sections/PerformancesSection";
-import Image from "next/image";
-import Link from "next/link";
 
 export default function Home() {
     return (
         <main>
-            {/* <div className="z-[100] pointer-events-none w-full absolute inset-0 h-screen">
+            <div className="z-[100] pointer-events-none w-full absolute inset-0 h-screen">
                 <SparklesCore
                     id="tsparticlesfullpage"
                     background="transparent"
@@ -18,7 +16,7 @@ export default function Home() {
                     className="w-full h-full"
                     particleColor="#FFFFFF"
                 />
-            </div> */}
+            </div>
             <HeroSection />
             <PerformanceSection />
         </main>
