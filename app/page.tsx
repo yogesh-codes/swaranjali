@@ -1,13 +1,13 @@
+import { performancesData } from "@/assets/performancesData";
 import HeroSection from "@/sections/HeroSection";
-import PerformersSection from "@/sections/PerformersSection";
+import PerformanceSection from "@/sections/PerformancesSection";
 import Image from "next/image";
 
 export default function Home() {
     return (
         <main>
             <HeroSection />
-            <h2>Perf</h2>
-            <PerformersSection />
+            <PerformanceSection />
         </main>
     );
 }

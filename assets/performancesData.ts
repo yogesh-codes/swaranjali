@@ -6,13 +6,13 @@ import p5Image from "@/assets/images/artists/p5.png";
 import p6Image from "@/assets/images/artists/p6.png";
 import { StaticImageData } from "next/image";
 
-type ArtistType = {
+export type ArtistType = {
     name: string;
     role: string;
     bio: string;
 };
 
-type PerformanceDataType = {
+export type PerformanceDataType = {
     id: string;
     title: string;
     artists: ArtistType[];
@@ -141,7 +141,7 @@ export const performancesData: PerformanceDataType[] = [
             },
         ],
         description:
-            "A 10-minute Bharatanatyam vignette covering Alarippu through Tillana, with live Carnatic accompaniment.",
+            "A Bharatanatyam vignette covering Alarippu through Tillana, with live Carnatic accompaniment.",
         durationMinutes: 10,
         photoHref: p4Image,
     },
@@ -171,7 +171,7 @@ export const performancesData: PerformanceDataType[] = [
             },
         ],
         description:
-            "A soulful 10-minute Shabad Kirtan session featuring sacred hymns in traditional raag forms.",
+            "A soulful Shabad Kirtan session featuring sacred hymns in traditional raag forms.",
         durationMinutes: 10,
         photoHref: p5Image,
     },
@@ -206,7 +206,7 @@ export const performancesData: PerformanceDataType[] = [
             },
         ],
         description:
-            "A high-energy 10-minute folk segment blending Bhangra and Giddha with synchronized beats and claps.",
+            "A high-energy folk segment blending Bhangra and Giddha with synchronized beats and claps.",
         durationMinutes: 10,
         photoHref: p6Image,
     },

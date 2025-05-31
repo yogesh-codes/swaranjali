@@ -37,12 +37,16 @@
         @apply text-base md:text-lg lg:text-xl xl:text-2xl text-black;
     }
 
+    /* span {
+         @apply text-base md:text-lg lg:text-xl xl:text-2xl text-black;
+    } */
+
     section {
         @apply w-full flex flex-col items-center content-center justify-center;
     }
 
     body {
-        background: grey;
+        background: rgb(227, 227, 227);
         font-family: Arial, Helvetica, sans-serif;
     }
 
