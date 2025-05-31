@@ -5,6 +5,7 @@ import {
 } from "@/assets/performancesData";
 import PerformanceCard from "./PerformanceCard";
 import { timelineData, TimelineDataProps } from "@/assets/timelineData";
+import PageContent from "@/components/PageContent";
 
 export default function PerformanceSection() {
     const timelineMap: Map<string, Partial<TimelineDataProps>> = new Map(
@@ -12,17 +13,20 @@ export default function PerformanceSection() {
     );
     return (
         <section>
-            <p>This is our catalogue. Best.</p>
-            {performancesData.map((performanceItem) => {
-                return (
-                    <>
-                        <PerformanceCard
-                            {...performanceItem}
-                            {...timelineMap.get(performanceItem.id)}
-                        />
-                    </>
-                );
-            })}
+            <div className="max-w-[1280px]">
+                <p hidden>This is our catalogue. Best.</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 items-stretch gap-5 transition-all ease-in-out duration-300">
+                    {performancesData.map((performanceItem) => {
+                        return (
+                            <PerformanceCard
+                                key={performanceItem.id}
+                                {...performanceItem}
+                                {...timelineMap.get(performanceItem.id)}
+                            />
+                        );
+                    })}
+                </div>
+            </div>
         </section>
     );
 }

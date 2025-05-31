@@ -11,7 +11,7 @@ const NavItem = ({ title, href }: NavItemProps) => {
         <li>
             <Link href={href}>
                 {" "}
-                <button className="py-1 px-2 bg-orange-400 rounded-2xl">
+                <button className="py-1 px-4 bg-orange-400 rounded-2xl cursor-pointer">
                     {title}
                 </button>
             </Link>

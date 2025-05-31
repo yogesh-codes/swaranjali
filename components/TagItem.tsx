@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState } from "react";
 import { BsPersonCircle } from "react-icons/bs";
-import { MdPersonPin } from "react-icons/md";
+// import { MdPersonPin } from "react-icons/md";
 
 export type TagItemProps = {
     title: string;
