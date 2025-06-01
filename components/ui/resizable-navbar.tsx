@@ -260,7 +260,7 @@ export const NavbarLogo = () => {
             /> */}
 
             <div className="">
-                <LogoSvg className="w-[40px] h-[40px]" />
+                <LogoSvg className="w-[40px] h-[40px] text-ndark" />
             </div>
 
             <span className={`text-xl text-ndark ${websiteMainFont.className}`}>
