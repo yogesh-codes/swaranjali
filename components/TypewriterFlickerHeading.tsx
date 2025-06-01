@@ -47,7 +47,7 @@ export default function TypewriterFlickerHeading({
                 initial="hidden"
                 animate="visible"
                 className={cn(
-                    "text-6xl font text-black tracking-tight",
+                    "text-6xl font text-ndark tracking-tight",
                     headingClassName
                 )}
             >

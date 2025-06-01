@@ -1,24 +1,5 @@
 @import "tailwindcss";
 
-:root {
-    --background: #ffffff;
-    --foreground: #171717;
-}
-
-@theme inline {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
-    }
-}
-
 @layer base {
     h1 {
         @apply text-4xl md:text-5xl  xl:text-6xl;
@@ -34,7 +15,7 @@
     }
 
     p {
-        @apply text-base md:text-lg lg:text-xl xl:text-2xl text-black;
+        @apply text-base md:text-lg lg:text-xl xl:text-2xl text-ndark;
     }
 
     /* span {
@@ -46,11 +27,43 @@
     }
 
     body {
-        background: rgb(227, 227, 227);
+        background: var(--col-nlight);
+        color: var(--col-ndark);
         font-family: Arial, Helvetica, sans-serif;
     }
 
     button {
         @apply cursor-pointer px-2 py-2;
     }
+
+    :root {
+        --col-primary: #c13c3f;
+        /* #c13c3f; */
+        --col-nlight: #ececec;
+        --col-purelight: #ffffff;
+        --col-ndark: #001514;
+        --col-puredark: #000000;
+        --col-accent: #15616d;
+    }
+
+    .theme-dark {
+        --col-primary: rgb(202, 92, 92);
+        --col-nlight: #000000;
+        --col-purelight: #001514;
+        --col-ndark: #ffffff;
+        --col-puredark: #ececec;
+        --col-accent: #85aeb4;
+    }
+}
+
+@theme {
+    --color-primary: var(--col-primary);
+
+    --color-nlight: var(--col-nlight);
+    --color-purelight: var(--col-purelight);
+
+    --color-ndark: var(--col-ndark);
+    --color-puredark: var(--col-puredark);
+
+    --color-accent: var(--col-accent);
 }

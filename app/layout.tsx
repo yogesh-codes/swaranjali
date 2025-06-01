@@ -1,13 +1,20 @@
+import {
+    websiteSubFont,
+    websiteTitle,
+    websiteDescription,
+} from "@/assets/websiteData";
 import "./globals.css";
-
-import { websiteSubFont } from "@/assets/websiteData";
 import DevBorder from "@/sections/DevBorder/DevBorder";
-
 import { ResponsiveNavbarDemo } from "@/components/ui/ResponsiveNavBar";
+import ThemeWrapper from "./theme-wrapper";
+
+import favicon from "@/assets/ico/logo.ico";
 
 export const metadata = {
-    title: "Next.js + Framer Motion Example",
-    description: "Fade page transitions with AnimatePresence",
+    title: websiteTitle,
+    description: websiteDescription,
+    favicon: favicon,
+    keywords: ["event", "cultral event", "2025", "Swaranjali", "nextjs"],
 };
 
 export default function RootLayout({
@@ -18,11 +25,13 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={websiteSubFont.className}>
-                {/* <PageTransition> */}
-                <DevBorder />
-                <ResponsiveNavbarDemo />
-                {children}
-                {/* </PageTransition> */}
+                <ThemeWrapper>
+                    {/* <PageTransition> */}
+                    <DevBorder />
+                    <ResponsiveNavbarDemo />
+                    {children}
+                    {/* </PageTransition> */}
+                </ThemeWrapper>
             </body>
         </html>
     );

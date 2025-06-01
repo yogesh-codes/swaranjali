@@ -1,5 +1,6 @@
 import React, { useLayoutEffect, useState } from "react";
 import { BsPersonCircle } from "react-icons/bs";
+import Button from "./Button";
 // import { MdPersonPin } from "react-icons/md";
 
 export type TagItemProps = {
@@ -9,7 +10,9 @@ export type TagItemProps = {
     onTagClick: (isActive: boolean) => void;
 };
 
-const TagItem = ({ title, subTitle, onTagClick }: TagItemProps) => {
+const TagItem = (
+    { title, subTitle, extraText, onTagClick }: TagItemProps // eslint-disable-line @typescript-eslint/no-unused-vars
+) => {
     const [isActive, setIsActive] = useState<boolean>(false);
 
     const handleOnBlur = () => {
@@ -26,17 +29,18 @@ const TagItem = ({ title, subTitle, onTagClick }: TagItemProps) => {
     }, [isActive, onTagClick]);
     return (
         <li>
-            <button
+            <Button
+                variant="primary"
                 className={`flex flex-row justify-start items-center gap-2 rounded-md  ${
-                    isActive ? "bg-amber-300" : "bg-white"
+                    isActive ? "bg-accent" : "bg-nlight"
                 }`}
                 onClick={() => handleOnClick()}
                 onBlur={() => handleOnBlur()}
             >
                 <BsPersonCircle className="inline-flex" />
                 <span>{title}</span>
-                <span className="text-neutral-600">({subTitle})</span>{" "}
-            </button>
+                <span>({subTitle})</span>{" "}
+            </Button>
         </li>
     );
 };

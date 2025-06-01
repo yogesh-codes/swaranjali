@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/resizable-navbar";
 import Link from "next/link";
 import { useState } from "react";
+import ThemeControlMenu from "../ThemeControlMenu";
 
 export function ResponsiveNavbarDemo() {
     const navItems = [
@@ -34,6 +35,9 @@ export function ResponsiveNavbarDemo() {
                 <NavbarLogo />
                 <NavItems items={navItems} />
                 <div className="flex items-center gap-4">
+                    <NavbarButton variant="secondary">
+                        <ThemeControlMenu />
+                    </NavbarButton>
                     <NavbarButton variant="secondary">Register</NavbarButton>
                     <NavbarButton variant="primary">Contact Us</NavbarButton>
                 </div>
@@ -58,12 +62,15 @@ export function ResponsiveNavbarDemo() {
                             key={`mobile-link-${idx}`}
                             href={item.link}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="relative text-neutral-600 dark:text-neutral-300"
+                            className="relative text-primary "
                         >
                             <span className="block">{item.name}</span>
                         </Link>
                     ))}
                     <div className="flex w-full flex-col gap-4">
+                        <NavbarButton variant="secondary">
+                            <ThemeControlMenu />
+                        </NavbarButton>
                         <NavbarButton
                             onClick={() => setIsMobileMenuOpen(false)}
                             variant="primary"
