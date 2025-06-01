@@ -69,7 +69,7 @@ const PerformanceCard = (item: PerformanceCardProps) => {
                             src={item.photoHref}
                             alt=""
                             fill={true}
-                            className="absolute object-cover object-[0%_18%]"
+                            className="absolute object-cover object-[50%_18%]"
                         />
                     </motion.div>
 

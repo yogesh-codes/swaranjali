@@ -17,10 +17,6 @@ import ThemeControlMenu from "../ThemeControlMenu";
 export function ResponsiveNavbarDemo() {
     const navItems = [
         {
-            name: "Home",
-            link: "/",
-        },
-        {
             name: "Download Setlist",
             link: "/",
         },
@@ -35,9 +31,11 @@ export function ResponsiveNavbarDemo() {
     return (
         <Navbar className="">
             {/* Desktop Navigation */}
-            <NavBody className="">
+            <NavBody className="justify-center">
                 <NavbarLogo />
-                <NavItems items={navItems} />
+                <div className="">
+                    <NavItems items={navItems} />
+                </div>
                 <div className="flex items-center gap-4">
                     <NavbarButton variant="secondary">
                         <ThemeControlMenu />
