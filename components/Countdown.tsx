@@ -52,7 +52,7 @@ export default function Countdown({ targetDate }: CountdownProps) {
         }, 1000);
 
         return () => clearInterval(timerId);
-    }, [targetDate, calculateTimeLeft]);
+    }, [targetDate]);
 
     // 4) If time is up, show a message
     if (timeLeft.total <= 0) {
