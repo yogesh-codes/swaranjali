@@ -11,10 +11,11 @@ import Image from "next/image";
 import TypewriterFlickerHeading from "@/components/TypewriterFlickerHeading";
 import Button from "@/components/Button";
 import { SparklesCore } from "@/components/ui/sparkles";
+import EventAnnouncementContainer from "./EventAnnouncementContainer";
 
 const HeroSection = () => {
     return (
-        <section className="relative bg-primary h-[480px]">
+        <section className="relative bg-primary min-h-[480px]">
             <div className="absolute z-[100] pointer-events-none w-full inset-0 h-screen">
                 <SparklesCore
                     id="tsparticlesfullpage"
@@ -34,13 +35,15 @@ const HeroSection = () => {
             />
             <div className="absolute w-full h-full backdrop:blur-xl bg-nlight/60"></div>
             <PageContent>
-                <div className="pt-30 pb-10">
+                <div className="pt-30 pb-5">
                     <TypewriterFlickerHeading
                         headingText={websiteTitle}
                         headingClassName={websiteMainFont.className}
                     />
+
                     <p className="text-center">{websiteDescription}</p>
 
+                    <EventAnnouncementContainer />
                     <div className="flex flex-col items-center content-center justify-center gap-2 pt-5">
                         <Button
                             hidden

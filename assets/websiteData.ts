@@ -12,6 +12,7 @@ export const websiteHeroBannerImg = heroBannerImg;
 export const websiteCTAMessage =
     "Join us on 21st Nov at Nova Hall for an evening of Indian classical & folk performances. Register now!";
 
+export const websiteEventDate = new Date(2025, 10, 21, 18, 0);
 export const websiteMainFont = Lavishly_Yours({
     preload: true,
     weight: "400",

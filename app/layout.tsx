@@ -39,7 +39,7 @@ export const metadata = {
     openGraph: {
         title: websiteTitle,
         description: websiteDescription,
-        url: "/", // will resolve to "https://your-site.com/"
+        url: websiteURL, // will resolve to "https://your-site.com/"
         siteName: websiteTitle,
         images: [
             {

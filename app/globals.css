@@ -66,4 +66,6 @@
     --color-puredark: var(--col-puredark);
 
     --color-accent: var(--col-accent);
+
+    --color-grey: #888888;
 }
