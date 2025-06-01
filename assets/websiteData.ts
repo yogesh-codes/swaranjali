@@ -24,3 +24,13 @@ export const websiteSubFont = Playfair_Display({
     weight: "400",
     subsets: ["latin"],
 });
+
+export const websiteColors = {
+    primary: "#c13c3f",
+};
+
+export const websiteURL = new URL(
+    "https://swaranjali-yogesh-codes-projects.vercel.app/"
+);
+
+export const websiteAuthor = { name: "Yogesh" }; //,url:"/about"
