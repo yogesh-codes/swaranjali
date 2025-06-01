@@ -100,14 +100,18 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
             transition={{
                 type: "spring",
                 stiffness: 200,
-                damping: 50,
+                damping: 80,
             }}
             style={{
                 minWidth: "800px",
             }}
             className={cn(
-                "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex",
-                visible && "bg-purelight/80 dark:bg-ndark/80",
+                `relative z-[60] mx-auto 
+                hidden w-full 
+                max-w-7xl flex-row items-center justify-between 
+                self-start rounded-full bg-transparent 
+                px-4 py-2 lg:flex`,
+                visible && `bg-purelight/80`,
                 className
             )}
         >
@@ -125,7 +129,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
             className={cn(
                 `absolute inset-0 hidden 
                 flex-1 flex-row items-center justify-center space-x-2 
-                text-sm font-medium 
+                text-base font-medium 
                 text-ndark 
                 transition duration-200 
                 hover:text-pureblack 
@@ -239,9 +243,9 @@ export const MobileNavToggle = ({
     onClick: () => void;
 }) => {
     return isOpen ? (
-        <RxCross2 className="text-ndark" onClick={onClick} />
+        <RxCross2 className="text-ndark text-3xl" onClick={onClick} />
     ) : (
-        <RxHamburgerMenu className="text-ndark" onClick={onClick} />
+        <RxHamburgerMenu className="text-ndark text-3xl" onClick={onClick} />
     );
 };
 
@@ -282,7 +286,7 @@ export const NavbarButton = ({
     as?: React.ElementType;
     children: React.ReactNode;
     className?: string;
-    variant?: "primary" | "secondary" | "dark" | "gradient";
+    variant?: "primary" | "secondary" | "dark" | "gradient" | "accent";
 } & (
     | React.ComponentPropsWithoutRef<"a">
     | React.ComponentPropsWithoutRef<"button">
@@ -297,6 +301,7 @@ export const NavbarButton = ({
         dark: "bg-pureblack text-nlight shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
         gradient:
             "bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
+        accent: "text-nlight bg-accent",
     };
 
     return (

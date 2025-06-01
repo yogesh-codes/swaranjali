@@ -18,11 +18,15 @@ export function ResponsiveNavbarDemo() {
     const navItems = [
         {
             name: "Home",
-            link: "#features",
+            link: "/",
         },
         {
             name: "Download Setlist",
             link: "/",
+        },
+        {
+            name: "Demo Details",
+            link: "/demo-details",
         },
     ];
 
@@ -39,7 +43,7 @@ export function ResponsiveNavbarDemo() {
                         <ThemeControlMenu />
                     </NavbarButton>
                     <NavbarButton variant="secondary">Register</NavbarButton>
-                    <NavbarButton variant="primary">Contact Us</NavbarButton>
+                    <NavbarButton variant="accent">Contact Us</NavbarButton>
                 </div>
             </NavBody>
 

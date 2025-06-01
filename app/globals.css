@@ -15,7 +15,7 @@
     }
 
     p {
-        @apply text-base md:text-lg lg:text-xl xl:text-2xl text-ndark;
+        @apply text-base md:text-lg xl:text-xl text-ndark;
     }
 
     /* span {
