@@ -1,3 +1,4 @@
+"use client";
 import { MdSunny, MdDarkMode } from "react-icons/md";
 import { useLayoutEffect, useState } from "react";
 
@@ -6,14 +7,50 @@ export default function ThemeControlMenu() {
 
     // 2. if mounted-> read the real preference and update
     useLayoutEffect(() => {
+        // old-
+        // const stored = localStorage.getItem("theme");
+        // const osPrefers = window.matchMedia(
+        //     "(prefers-color-scheme: dark)"
+        // ).matches;
+        // const shouldBeDark =
+        //     stored === "dark" || (stored === null && osPrefers);
+        // setIsDark(shouldBeDark);
+        // console.log("In theme menu, On mount, I'm setIsDark to ", shouldBeDark);
+
+        // new- Localstorage preference >> os preference >> default dark
         const stored = localStorage.getItem("theme");
-        const osPrefers = window.matchMedia(
-            "(prefers-color-scheme: dark)"
+
+        //If preference is already stored, go with it
+        // no questions asked
+        if (stored === "light") {
+            setIsDark(false);
+            return;
+        }
+        if (stored === "dark") {
+            setIsDark(true);
+            return;
+        }
+
+        const osPrefersLight = window.matchMedia(
+            "(prefers-color-scheme:light)"
         ).matches;
-        const shouldBeDark =
-            stored === "dark" || (stored === null && osPrefers);
-        setIsDark(shouldBeDark);
-        console.log("In theme menu, On mount, I'm setIsDark to ", shouldBeDark);
+
+        if (osPrefersLight) {
+            setIsDark(false);
+            return;
+        }
+        const osPrefersDark = window.matchMedia(
+            "(prefers-color-scheme:dark)"
+        ).matches;
+
+        if (osPrefersDark) {
+            setIsDark(true);
+            return;
+        }
+
+        // notes: If youre here, then no preference
+        // my opinion is go with dark
+        setIsDark(true);
     }, []);
 
     // 3. premise- isDark changed -> update HTML class
