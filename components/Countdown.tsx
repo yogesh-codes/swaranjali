@@ -1,8 +1,7 @@
+"use client";
 // File: /app/components/Countdown.tsx
 // ---------------------------------------------------
 // Tailwind v4 + Next 15.3.2 (App Router) + TypeScript
-
-"use client";
 
 import { useState, useEffect } from "react";
 

@@ -3,17 +3,47 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
     reactStrictMode: true,
-    // No need to set experimental.appDir anymore; it's implicit in Next.js 15+
+    productionBrowserSourceMaps: true,
+
+    // 1) Turbopack rules (for `next dev`)
     turbopack: {
         rules: {
-            // Match any import ending in .svg
             "*.svg": {
-                // Use SVGR to transform SVG into a React component
                 loaders: ["@svgr/webpack"],
-                // Emit as a JS module so you can `import Logo from './logo.svg'`
                 as: "*.js",
             },
         },
+    },
+
+    // 2) Webpack override (for `next build` → `next start`)
+    //notes: run dev uses turbopack but build uses webpack,
+    // so need to override webpack for working with svg
+    webpack(config, { isServer }) {
+        // Only apply this on the client side (so you don’t break any server SVG usage).
+        if (!isServer) {
+            config.module.rules.push({
+                test: /\.svg$/i,
+                issuer: /\.[jt]sx?$/,
+                use: [
+                    {
+                        loader: "@svgr/webpack",
+                        options: {
+                            svgo: true,
+                            svgoConfig: {
+                                plugins: [
+                                    {
+                                        name: "removeViewBox",
+                                        active: false,
+                                    },
+                                ],
+                            },
+                        },
+                    },
+                ],
+            });
+        }
+
+        return config;
     },
 };
 

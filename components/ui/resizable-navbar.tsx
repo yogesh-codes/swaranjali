@@ -13,7 +13,7 @@ import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 import { websiteMainFont } from "@/assets/websiteData";
 import Link from "next/link";
 
-import LogoSvg from "@/assets/svg/logo-transparent.svg";
+import LogoSvg from "@/assets/svg/logo-transparent.svg"; //eslint-disable-line @typescript-eslint/no-unused-vars
 
 interface NavbarProps {
     children: React.ReactNode;
@@ -259,9 +259,10 @@ export const NavbarLogo = () => {
                 className=""
             /> */}
 
-            <div>
-                <LogoSvg className="w-[40px] h-[40px] text-puredark" />
+            <div className="">
+                <LogoSvg className="w-[40px] h-[40px]" />
             </div>
+
             <span className={`text-xl text-ndark ${websiteMainFont.className}`}>
                 Swaranjali
             </span>
