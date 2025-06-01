@@ -69,7 +69,7 @@ export const performancesData: PerformanceDataType[] = [
         ],
 
         description:
-            "A compact Carnatic set of a varnam and a kriti—Endaro Mahanubhavulu—accompanied by full percussion and melodic support.",
+            "A carnatic kriti—Endaro Mahanubhavulu—accompanied by full percussion and melodic support.",
         durationMinutes: 10,
         photoHref: p2Image,
     },
