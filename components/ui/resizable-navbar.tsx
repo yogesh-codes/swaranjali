@@ -10,9 +10,10 @@ import {
 
 import React, { useRef, useState } from "react";
 import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
-import { websiteMainFont, websiteLogoTransparent } from "@/assets/websiteData";
-import Image from "next/image";
+import { websiteMainFont } from "@/assets/websiteData";
 import Link from "next/link";
+
+import LogoSvg from "@/assets/svg/logo-transparent.svg";
 
 interface NavbarProps {
     children: React.ReactNode;
@@ -250,13 +251,17 @@ export const NavbarLogo = () => {
             href="#"
             className="relative z-20 mr-2 flex items-center space-x-2 px-2 py-1 text-sm text-black"
         >
-            <Image
+            {/* <Image
                 src={websiteLogoTransparent}
                 alt="logo"
                 width={40}
                 height={40}
                 className=""
-            />
+            /> */}
+
+            <div>
+                <LogoSvg className="w-[40px] h-[40px] text-puredark" />
+            </div>
             <span className={`text-xl text-ndark ${websiteMainFont.className}`}>
                 Swaranjali
             </span>
