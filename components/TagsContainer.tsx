@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useCallback, useLayoutEffect, useState } from "react";
 import TagItem from "./TagItem";
 
 export type TagItemData = {
@@ -32,8 +32,8 @@ const TagsContainer = ({ TagsListItems }: TagsContainerProps) => {
     return (
         <div
             onClick={() => {
-                setCurrentlyActive(null);
-                console.log("I set it to null.. something happened?");
+                // setCurrentlyActive(null);
+                // console.log("I set it to null.. something happened?");
             }}
         >
             <ul
@@ -45,10 +45,10 @@ const TagsContainer = ({ TagsListItems }: TagsContainerProps) => {
                         title={item.title}
                         subTitle={item.subTitle}
                         extraText={item.extraText}
-                        onTagClick={(isActive) => {
+                        onTagClick={useCallback((isActive) => {
                             if (isActive) setCurrentlyActive(item);
                             else setCurrentlyActive(null);
-                        }}
+                        }, [])}
                     />
                 ))}
             </ul>

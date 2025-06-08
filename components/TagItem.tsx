@@ -26,12 +26,13 @@ const TagItem = (
 
     useLayoutEffect(() => {
         onTagClick(isActive);
-    }, [isActive, onTagClick]);
+        console.log("layout change- Activated new card ", title);
+    }, [isActive]);
     return (
         <li>
             <Button
                 variant="primary"
-                className={`flex flex-row justify-start items-center gap-2 rounded-md  ${
+                className={`flex flex-row justify-start items-center gap-2 rounded-md p-1 ${
                     isActive ? "bg-accent" : "bg-nlight"
                 }`}
                 onClick={() => handleOnClick()}
