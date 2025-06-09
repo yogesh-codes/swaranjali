@@ -46,11 +46,10 @@ const HeroSection = () => {
                     <EventAnnouncementContainer />
                     <div className="flex flex-col items-center content-center justify-center gap-2 pt-5">
                         <Button
-                            hidden
                             variant="outline"
                             className="max-w-full w-60 rounded-2xl "
                         >
-                            Setlist
+                            Login
                         </Button>
                         <Button
                             variant="primary"

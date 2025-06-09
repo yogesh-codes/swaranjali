@@ -45,6 +45,10 @@
         --col-puredark: #000000;
         --col-accent: #15616d;
     }
+    input {
+        @apply p-3;
+        outline: none;
+    }
 
     .theme-dark {
         --col-primary: rgb(202, 92, 92);
