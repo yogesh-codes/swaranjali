@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import type { Container, SingleOrMultiple } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
-import { cn } from "@/lib/utils";
+import { cn } from "@/app/(auth)/_lib/utils";
 import { motion, useAnimation } from "motion/react";
 
 type ParticlesProps = {
@@ -56,7 +56,7 @@ export const SparklesCore = (props: ParticlesProps) => {
             {init && (
                 <Particles
                     id={id || generatedId}
-                    className={cn("h-full w-full")}
+                    className={cn("h-full w-full opacity-80")}
                     particlesLoaded={particlesLoaded}
                     options={{
                         background: {

@@ -1,12 +1,12 @@
-import PageContent from "@/components/PageContent";
-import { CardStack } from "@/components/ui/cardStack";
+import MyPageContent from "@/components/primitive/MyPageContent";
+import { CardStack } from "./_components/cardStack";
 import { projectFeatures } from "@/assets/websiteData";
 import React from "react";
 
 const page = () => {
     return (
         <section className="bg-primary">
-            <PageContent>
+            <MyPageContent>
                 <div className="pt-30" />
                 <div className="py-5">
                     <h1 className="py-3">Swaranjali- About the project</h1>
@@ -35,7 +35,7 @@ const page = () => {
                         };
                     })}
                 />
-            </PageContent>
+            </MyPageContent>
         </section>
     );
 };

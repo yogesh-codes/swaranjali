@@ -1,7 +1,7 @@
 // import { performancesData } from "@/assets/performancesData";
 
-import HeroSection from "@/sections/HeroSection";
-import PerformanceSection from "@/sections/PerformancesSection";
+import HeroSection from "@/app/_containers/HeroSection";
+import PerformanceSection from "@/app/_containers/PerformancesSection";
 
 export const metadata = {
     title: "Swaranjali 2025",

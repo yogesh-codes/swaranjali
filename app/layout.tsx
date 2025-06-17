@@ -8,9 +8,9 @@ import {
 } from "@/assets/websiteData";
 
 import "./globals.css";
-import DevBorder from "@/sections/DevBorder/DevBorder";
-import { ResponsiveNavbarDemo } from "@/components/ui/ResponsiveNavBar";
-import ThemeWrapper from "./theme-wrapper";
+import DevBorder from "@/app/_devOnly/_containers/DevBorder";
+import { ResponsiveNavbarDemo } from "@/app/_components/_ui/ResponsiveNavBar";
+import ThemeWrapper from "./(theme-control)/theme-wrapper";
 
 // import logoIco from "@/assets/ico/logo.ico";
 // import logoPng from "@/assets/images/logo.png";
