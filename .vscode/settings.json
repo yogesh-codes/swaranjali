@@ -3,5 +3,7 @@
     "files.associations": {
         "*.css": "tailwindcss",
         "*.scss": "tailwindcss"
-    }
+    },
+
+    "markdownlint.config": { "list-marker-space": false }
 }
