@@ -1,4 +1,4 @@
-import { cn } from "@/app/(auth)/_lib/utils";
+import { cn } from "@/app/(auth-group)/_lib/utils";
 
 import React, { ComponentPropsWithoutRef } from "react";
 

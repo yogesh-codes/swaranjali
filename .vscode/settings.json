@@ -5,5 +5,8 @@
         "*.scss": "tailwindcss"
     },
 
-    "markdownlint.config": { "list-marker-space": false }
+    "markdownlint.config": { "list-marker-space": false },
+
+    "explorer.sortOrder": "type",
+    "explorer.sortOrderReverse": true
 }

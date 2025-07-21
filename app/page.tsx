@@ -1,17 +1,12 @@
-// import { performancesData } from "@/assets/performancesData";
-
-import HeroSection from "@/app/_containers/HeroSection";
-import PerformanceSection from "@/app/_containers/PerformancesSection";
+import LandingPage from "./(landing-page)/LandingPage";
+import DashboardPage from "./(logged-group)/dashboard/page";
 
 export const metadata = {
-    title: "Swaranjali 2025",
+    title: "Home | Swaranjali",
 };
 
-export default function Home() {
-    return (
-        <main>
-            <HeroSection />
-            <PerformanceSection />
-        </main>
-    );
+export default function Root() {
+    const user = null;
+    if (user) return <DashboardPage />;
+    else return <LandingPage />;
 }

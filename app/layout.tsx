@@ -9,8 +9,8 @@ import {
 
 import "./globals.css";
 import DevBorder from "@/app/_devOnly/_containers/DevBorder";
-import { ResponsiveNavbarDemo } from "@/app/_components/_ui/ResponsiveNavBar";
-import ThemeWrapper from "./(theme-control)/theme-wrapper";
+import { ResponsiveNavbarDemo } from "@/app/(landing-page)/_components/_ui/ResponsiveNavBar";
+import ThemeWrapper from "./_theme-control/theme-wrapper";
 
 // import logoIco from "@/assets/ico/logo.ico";
 // import logoPng from "@/assets/images/logo.png";
