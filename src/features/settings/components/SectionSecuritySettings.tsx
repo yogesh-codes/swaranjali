@@ -3,7 +3,7 @@ import React from "react";
 import {
     getIsDark,
     setIsDark,
-} from "@/src/shared/components/theme-control/ThemeControlMenu";
+} from "@/shared/components/theme-control/ThemeControlMenu";
 
 //Components
 import SettingsSection from "./SettingsSection";

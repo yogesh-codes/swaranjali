@@ -1,5 +1,5 @@
 import React from "react";
-import SettingsSection from "../../src/shared/components/settings-page-components/SettingsSection";
+import SettingsSection from "./SettingsSection";
 
 const ProfileAndAccountSettings = () => {
     return (

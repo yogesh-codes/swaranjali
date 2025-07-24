@@ -1,5 +1,5 @@
-import MyPageSection from "@/src/shared/components/MyPageSection";
-import MyPageContent from "@/src/shared/components/MyPageContent";
+import MyPageSection from "@/shared/components/MyPageSection";
+import MyPageContent from "@/shared/components/MyPageContent";
 
 import React from "react";
 

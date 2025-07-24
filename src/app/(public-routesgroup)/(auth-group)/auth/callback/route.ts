@@ -1,6 +1,6 @@
 // app/auth/callback/route.ts
 import { NextResponse } from "next/server";
-import { createClient } from "@/src/features/login/utils/supabase/server";
+import { createClient } from "@/features/login/utils/supabase/server";
 
 export async function GET(request: Request) {
     // 1. Pull `code` from the query string if it exists

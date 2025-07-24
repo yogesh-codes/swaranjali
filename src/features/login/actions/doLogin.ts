@@ -1,7 +1,7 @@
 // app/(auth-group)/login/_actions/actions.ts
 "use server";
 
-import { createClient } from "@/src/features/login/utils/supabase/server";
+import { createClient } from "@/features/login/utils/supabase/server";
 
 export async function doLogin(formData: FormData) {
     const userEmail = formData.get("email") as string;

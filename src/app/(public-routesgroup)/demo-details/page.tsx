@@ -1,10 +1,12 @@
 import React from "react";
-import AboutAppPage from "@/src/features/about-app/AboutAppPage";
+import AboutAppPage from "@/features/about-app/AboutAppPage";
 
-export const DemoDetailsPage = () => {
+const DemoDetailsPage = () => {
     return (
         <>
             <AboutAppPage />
         </>
     );
 };
+
+export default DemoDetailsPage;

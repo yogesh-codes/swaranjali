@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import SettingsSection from "../../src/shared/components/settings-page-components/SettingsSection";
+import SettingsSection from "./SettingsSection";
 
 const GeneralSettingsSection = () => {
     const [language, setLanguage] = useState<string>("en");

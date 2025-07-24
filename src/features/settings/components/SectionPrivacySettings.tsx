@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import SettingsSection from "../../src/shared/components/settings-page-components/SettingsSection";
-import ToggleSwitch from "../../src/shared/components/settings-page-components/ToggleSwitch";
+import SettingsSection from "./SettingsSection";
+import ToggleSwitch from "./ToggleSwitch";
 
 const PrivacySettings = () => {
     const [dataUsageConsent, setDataUsageConsent] = useState(true);

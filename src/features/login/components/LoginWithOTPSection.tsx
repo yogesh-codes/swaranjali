@@ -1,8 +1,8 @@
 "use client";
 
-import Button from "@/src/shared/components/Button";
-import MyPageContent from "@/src/shared/components/MyPageContent";
-import MyPageSection from "@/src/shared/components/MyPageSection";
+import Button from "@/shared/components/Button";
+import MyPageContent from "@/shared/components/MyPageContent";
+import MyPageSection from "@/shared/components/MyPageSection";
 import Link from "next/link";
 import React from "react";
 

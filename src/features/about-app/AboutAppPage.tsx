@@ -1,6 +1,6 @@
-import MyPageContent from "@/src/shared/components/MyPageContent";
-import { CardStack } from "@/src/features/about-app/cardStack";
-import { projectFeatures } from "@/src/shared/assets/websiteData";
+import MyPageContent from "@/shared/components/MyPageContent";
+import { CardStack } from "@/features/about-app/cardStack";
+import { projectFeatures } from "@/shared/assets/websiteData";
 import React from "react";
 
 const page = () => {
