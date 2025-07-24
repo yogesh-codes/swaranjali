@@ -1,0 +1,76 @@
+# ---------------------------
+# SECRETS & CREDENTIALS
+# ---------------------------
+.env
+.env.*            # .env.local, .env.production, etc.
+*.pem
+*.key
+*.crt
+*keystore*
+firebase*.json
+supabase*.json
+serviceAccount*.json
+
+# ---------------------------
+# BUILD / OUTPUT DIRECTORIES
+# ---------------------------
+.next/
+out/
+.vercel/
+.turbo/
+coverage/
+dist/
+build/
+
+# ---------------------------
+# DEPENDENCIES & PACKAGE MANAGERS
+# ---------------------------
+node_modules/
+.pnpm-store/
+.yarn/
+.yarnrc.yml
+*.lock            # yarn.lock, pnpm-lock.yaml, package-lock.json
+
+# ---------------------------
+# TEST ARTIFACTS & SNAPSHOTS
+# ---------------------------
+**/__snapshots__/**
+**/__fixtures__/**
+**/*.snap
+cypress/videos/
+cypress/screenshots/
+playwright-report/
+test-results/
+
+# ---------------------------
+# GENERATED CODE & CLIENTS
+# ---------------------------
+src/generated/**
+src/graphql/generated/**
+**/api/**/generated/**
+
+# ---------------------------
+# LARGE / BINARY ASSETS
+# ---------------------------
+public/**/*.mp4
+public/**/*.mov
+public/**/*.mp3
+public/**/*.zip
+public/**/*.pdf
+public/**/*.psd
+public/vendor/**
+
+# ---------------------------
+# EDITOR / OS NOISE
+# ---------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ---------------------------
+# EXAMPLES / TEMPLATES YOU *DO* WANT COPILOT TO SEE
+# (Use negation to re-allow specific files)
+# ---------------------------
+!env.example
+!src/examples/**

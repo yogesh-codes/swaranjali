@@ -8,5 +8,7 @@
     "markdownlint.config": { "list-marker-space": false },
 
     "explorer.sortOrder": "type",
-    "explorer.sortOrderReverse": true
+    "explorer.sortOrderReverse": true,
+
+    "editor.linkedEditing": true
 }
