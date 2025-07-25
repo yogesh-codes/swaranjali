@@ -1,42 +1,36 @@
-//Components
-import MyPageSection from "@/shared/components/MyPageSection";
-import MyPageContent from "@/shared/components/MyPageContent";
+import { redirect } from "next/navigation";
+import { createClient } from "@/features/login/utils/supabase/server";
+import MyLoginPage from "@/features/login/components/MyLoginPage";
 
-//Sections
-import LoginWithOTPSection from "../../../../features/login/components/LoginWithOTPSection";
+// type LoginPageProps = {
+//     searchParams: Promise<{ error?: string | string[] }>;
+// };
 
-//Server Actions
-import { doLogin } from "../../../../features/login/actions/doLogin";
+/*
+If already logged in, redirect to dashboard.
+Else render LoginPage
+*/
 
-type LoginPageProps = {
+export default async function Page({
+    searchParams,
+}: {
     searchParams: Promise<{ error?: string | string[] }>;
-};
+}) {
+    const supabase = await createClient();
+    const {
+        data: { user },
+    } = await supabase.auth.getUser();
 
-export default async function LoginPage({ searchParams }: LoginPageProps) {
-    const { error } = await searchParams;
-    const errorParam =
-        typeof error === "string"
-            ? error
-            : Array.isArray(error)
-            ? error[0]
-            : undefined;
+    if (user) {
+        console.log(
+            "Already signed in user attempting to '/login'. Redirecting to '/dashboard'."
+        );
+        return redirect("/dashboard");
+    }
 
     return (
-        <MyPageSection>
-            <div
-                className="
-            w-full 
-            min-h-20 lg:min-h-30 
-            flex flex-col items-center justify-end"
-            >
-                {errorParam && (
-                    <MyPageContent className="bg-danger-100 py-1">
-                        <p className="text-danger-800">Error: {errorParam}</p>
-                    </MyPageContent>
-                )}
-            </div>
-
-            <LoginWithOTPSection handleOnAction={doLogin} />
-        </MyPageSection>
+        <>
+            <MyLoginPage searchParams={searchParams} />
+        </>
     );
 }

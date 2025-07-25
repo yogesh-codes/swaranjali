@@ -1,11 +1,12 @@
+// utils/supabase/server.ts
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
-
-//wherever we use this export function, we'd be using supabase= async createClient();
 
 export async function createClient() {
     const cookieStore = await cookies();
 
+    // Create a server's supabase client with newly configured cookie,
+    // which could be used to maintain user's session
     return createServerClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -29,6 +30,3 @@ export async function createClient() {
         }
     );
 }
-
-// Note: Reason why we dont run createClient just once.
-// Reason is the cookies may be different each time.
