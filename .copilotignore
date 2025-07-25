@@ -74,3 +74,8 @@ Thumbs.db
 # ---------------------------
 !env.example
 !src/examples/**
+
+.dnt
+.db
+
+*database/
