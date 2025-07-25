@@ -3,6 +3,7 @@
 
 import { createClient } from "@/features/login/utils/supabase/server";
 import { revalidatePath } from "next/cache";
+import { NextURL } from "next/dist/server/web/next-url";
 import { redirect } from "next/navigation";
 
 export async function doLogin(formData: FormData) {
@@ -23,11 +24,16 @@ export async function doLogin(formData: FormData) {
     //     };
     // }
 
+    // inside a Route Handler or API route where you have access to the incoming Request
+    const { origin } = new URL(PROJECT_SITE_URL); // “http://localhost:3000” or “https://johnm.com”
+    const redirectUrl = new URL("/auth/confirm", origin); // build the absolute URL
+    redirectUrl.searchParams.set("next", "/dashboard"); // add your post-login path
+
     const { error: authError, data } = await supabase.auth.signInWithOtp({
         email: userEmail,
         options: {
             //PROJECT_SITE_URL will be localhost3000 or swaranjali
-            emailRedirectTo: `${PROJECT_SITE_URL}/auth/confirm?next=dashboard`,
+            emailRedirectTo: redirectUrl.toString(),
             //Note: supabase will further add searchparams tokenhash and type,
             //Note: supabase mail template for has been curated to expect '?next=dashboard'
 
@@ -36,20 +42,36 @@ export async function doLogin(formData: FormData) {
         },
     });
 
+    let errorWriteup = "";
+
     if (authError) {
-        // console.error({ error: authError });
-        // // throw new Error(authError.message);
-        // return {
-        //     status: "error",
-        //     message: authError.message,
-        // };
-        redirect(
-            `/error?msg=${authError.message}&httpstatuscode=${authError.code}`
-        );
+        console.log({ authError });
+        console.log(authError.name);
+
+        console.log("code=" + authError.code);
+        console.log("message=" + authError.message);
+        if (authError.message === "Signups not allowed for otp") {
+        } else if (authError.status?.toString().startsWith("4")) {
+            redirect(encodeURI("/login?msgType=error&msg=Some error occured."));
+        } else if (authError.status?.toString().startsWith("5")) {
+            redirect(
+                encodeURI(
+                    "/login?msgType=error&msg=An internal server error occured. Please try again later."
+                )
+            );
+        }
+
+        redirect(`/login?msg=${errorWriteup}msgType=error`);
     }
+
     console.log(data);
     revalidatePath("/", "layout");
-    redirect("/zzz-user?st");
+
+    redirect(
+        encodeURI(
+            "/login?msg=Please check your email for magic link&msgType=success"
+        )
+    );
 
     //     return {
     //         success: true,

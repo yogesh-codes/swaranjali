@@ -12,7 +12,9 @@ import {
 } from "@/shared/components/ui/resizable-navbar";
 import Link from "next/link";
 import { useState } from "react";
+
 import ThemeControlMenu from "@/shared/components/theme-control/ThemeControlMenu";
+import { UserProfileMenu } from "../UserProfileMenu";
 
 export function ResponsiveNavbarDemo() {
     const navItems = [
@@ -40,8 +42,8 @@ export function ResponsiveNavbarDemo() {
                     <NavbarButton variant="secondary">
                         <ThemeControlMenu />
                     </NavbarButton>
-                    <NavbarButton variant="secondary" href="/login">
-                        Register
+                    <NavbarButton variant="secondary">
+                        <UserProfileMenu />
                     </NavbarButton>
                     <NavbarButton variant="accent" href="/contact">
                         Contact Us
@@ -82,10 +84,10 @@ export function ResponsiveNavbarDemo() {
                             onClick={() => setIsMobileMenuOpen(false)}
                             variant="primary"
                             className="w-full text-center"
-                            href="/login"
                         >
                             {/* <NavbarButton */}
-                            Login
+
+                            <UserProfileMenu />
                             {/* </NavbarButton> */}
                         </NavbarButton>
                         <NavbarButton

@@ -54,7 +54,7 @@ export async function GET(request: NextRequest) {
             return NextResponse.redirect(redirectTo);
         } else {
             redirectTo.searchParams.delete("next");
-            redirectTo.pathname = `/error?msg=${err.message}&statuscode=${err.code}`;
+            redirectTo.pathname = `/login?status${err.status}&msg=${err.message}&code=${err.code}`;
             return NextResponse.redirect(redirectTo);
         }
     }
