@@ -3,10 +3,10 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-import { createClient } from "@/features/login/utils/supabase/server";
+import { createServerSupabase } from "@/shared/utils/supabase/server";
 
 export async function signup(formData: FormData) {
-    const supabase = await createClient();
+    const supabase = await createServerSupabase();
 
     // type-casting here for convenience
     // in practice, you should validate your inputs

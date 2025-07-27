@@ -1,17 +1,10 @@
 import { redirect } from "next/navigation";
-import { createClient } from "@/features/login/utils/supabase/server";
-import MyLoginPage, {
-    LoginPageProps,
-} from "@/features/login/components/MyLoginPage";
-
-// type LoginPageProps = {
-//     searchParams: Promise<{ error?: string | string[] }>;
-// };
-
-/*
-If already logged in, redirect to dashboard.
-Else render LoginPage
-*/
+import { createServerSupabase } from "@/shared/utils/supabase/server";
+import MyLoginPage from "@/features/login/components/MyLoginPage";
+import {
+    AllowedMsgType,
+    allowedMsgTypes,
+} from "@/shared/components/FlashMessage";
 
 export default async function Page({
     searchParams,
@@ -22,7 +15,7 @@ export default async function Page({
     }>;
 }) {
     //If logged in, redirect..
-    const supabase = await createClient();
+    const supabase = await createServerSupabase();
     const {
         data: { user },
     } = await supabase.auth.getUser();
@@ -37,11 +30,12 @@ export default async function Page({
     //So not logged in yet
 
     const { msg, msgType } = await searchParams;
-    if (
-        msg &&
-        msgType &&
-        ["success", "error", "warning", "error"].includes(msgType)
-    ) {
-        return <MyLoginPage flash={{ msg: msg, msgType: msgType }} />;
+
+    if (msg && msgType && allowedMsgTypes.includes(msgType as AllowedMsgType)) {
+        return (
+            <MyLoginPage
+                flash={{ msg: msg, msgType: msgType as AllowedMsgType }}
+            />
+        );
     } else return <MyLoginPage />;
 }

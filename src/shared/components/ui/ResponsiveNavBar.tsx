@@ -35,17 +35,19 @@ export function ResponsiveNavbarDemo() {
             {/* Desktop Navigation */}
             <NavBody className="justify-center">
                 <NavbarLogo />
+                {/* Text links */}
                 <div className="">
                     <NavItems items={navItems} />
                 </div>
+                {/* Button Links */}
                 <div className="flex items-center gap-4">
-                    <NavbarButton variant="secondary">
+                    <NavbarButton variant="transparent" as={"div"}>
                         <ThemeControlMenu />
                     </NavbarButton>
-                    <NavbarButton variant="secondary">
-                        <UserProfileMenu />
-                    </NavbarButton>
-                    <NavbarButton variant="accent" href="/contact">
+
+                    <UserProfileMenu />
+
+                    <NavbarButton variant="accent" as={"a"} href="/contact">
                         Contact Us
                     </NavbarButton>
                 </div>
@@ -77,19 +79,17 @@ export function ResponsiveNavbarDemo() {
                         </Link>
                     ))}
                     <div className="w-full flex flex-col items-center gap-3">
-                        <div>
-                            <ThemeControlMenu />
-                        </div>
                         <NavbarButton
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            variant="primary"
+                            as={"div"}
+                            onClick={() => {}}
+                            variant="transparent"
                             className="w-full text-center"
                         >
-                            {/* <NavbarButton */}
-
-                            <UserProfileMenu />
-                            {/* </NavbarButton> */}
+                            <ThemeControlMenu />
                         </NavbarButton>
+
+                        <UserProfileMenu />
+
                         <NavbarButton
                             onClick={() => setIsMobileMenuOpen(false)}
                             variant="accent"

@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "@/shared/lib/utils";
+import { cn } from "@/shared/utils/cssUtils";
 import {} from "react-icons";
 import {
     motion,
@@ -13,7 +13,7 @@ import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 import { websiteMainFont } from "@/shared/assets/websiteData";
 import Link from "next/link";
 
-import LogoSvg from "@/shared/assets/svg/logo-transparent.svg"; //eslint-disable-line @typescript-eslint/no-unused-vars
+import LogoSvg from "@/shared/assets/svg/logo-transparent.svg";
 
 interface NavbarProps {
     children: React.ReactNode;
@@ -296,13 +296,19 @@ export const NavbarButton = ({
     as?: React.ElementType;
     children: React.ReactNode;
     className?: string;
-    variant?: "primary" | "secondary" | "dark" | "gradient" | "accent";
+    variant?:
+        | "primary"
+        | "secondary"
+        | "dark"
+        | "gradient"
+        | "accent"
+        | "transparent";
 } & (
     | React.ComponentPropsWithoutRef<"a">
     | React.ComponentPropsWithoutRef<"button">
 )) => {
     const baseStyles =
-        "px-4 py-2 rounded-md button bg-n-100 text-pureblack text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
+        "w-full px-4 py-2 rounded-md button bg-n-100 text-pureblack relative cursor-pointer hover:-translate-y-0.5 transition duration-200 text-center";
 
     const variantStyles = {
         primary: "text-purewhite bg-primary-500 ",
@@ -311,6 +317,7 @@ export const NavbarButton = ({
         gradient:
             "bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
         accent: "text-nlight bg-accent",
+        transparent: "bg-transparent shadow-none text-ndark",
     };
 
     return (

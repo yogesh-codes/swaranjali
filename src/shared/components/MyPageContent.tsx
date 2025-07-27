@@ -1,4 +1,4 @@
-import { cn } from "@/shared/lib/utils";
+import { cn } from "@/shared/utils/cssUtils";
 import React, { ComponentPropsWithoutRef } from "react";
 
 type MyPageContentProps = ComponentPropsWithoutRef<"div">;

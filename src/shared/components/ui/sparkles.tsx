@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import type { Container, SingleOrMultiple } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
-import { cn } from "@/shared/lib/utils";
+import { cn } from "@/shared/utils/cssUtils";
 import { motion, useAnimation } from "motion/react";
 
 type ParticlesProps = {
@@ -31,7 +31,7 @@ export const SparklesCore = (props: ParticlesProps) => {
     } = props;
     const [init, setInit] = useState(false);
     useEffect(() => {
-        initParticlesEngine(async (engine) => {
+        void initParticlesEngine(async (engine) => {
             await loadSlim(engine);
         }).then(() => {
             setInit(true);
@@ -41,7 +41,7 @@ export const SparklesCore = (props: ParticlesProps) => {
 
     const particlesLoaded = async (container?: Container) => {
         if (container) {
-            controls.start({
+            await controls.start({
                 opacity: 1,
                 transition: {
                     duration: 1,
@@ -80,6 +80,7 @@ export const SparklesCore = (props: ParticlesProps) => {
                                     enable: false,
                                     mode: "repulse",
                                 },
+                                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                                 resize: true as any, //eslint-disable-line @typescript-eslint/no-explicit-any
                             },
                             modes: {

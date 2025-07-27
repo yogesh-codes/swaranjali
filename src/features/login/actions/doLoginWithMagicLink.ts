@@ -1,14 +1,13 @@
 // app/(auth-group)/login/_actions/actions.ts
 "use server";
 
-import { createClient } from "@/features/login/utils/supabase/server";
+import { createServerSupabase } from "@/shared/utils/supabase/server";
 import { revalidatePath } from "next/cache";
-import { NextURL } from "next/dist/server/web/next-url";
 import { redirect } from "next/navigation";
 
-export async function doLogin(formData: FormData) {
+export async function doLoginAction(formData: FormData) {
     const userEmail = formData.get("email") as string;
-    const supabase = await createClient();
+    const supabase = await createServerSupabase();
 
     const PROJECT_SITE_URL = process.env.PROJECT_SITE_URL!;
     console.log(`ProjectBaseUrl is ${PROJECT_SITE_URL}`);
@@ -42,8 +41,6 @@ export async function doLogin(formData: FormData) {
         },
     });
 
-    let errorWriteup = "";
-
     if (authError) {
         console.log({ authError });
         console.log(authError.name);
@@ -51,6 +48,9 @@ export async function doLogin(formData: FormData) {
         console.log("code=" + authError.code);
         console.log("message=" + authError.message);
         if (authError.message === "Signups not allowed for otp") {
+            redirect(
+                encodeURI("/login?msgType=error&msg=Account doesn't exist.")
+            );
         } else if (authError.status?.toString().startsWith("4")) {
             redirect(encodeURI("/login?msgType=error&msg=Some error occured."));
         } else if (authError.status?.toString().startsWith("5")) {
@@ -61,15 +61,16 @@ export async function doLogin(formData: FormData) {
             );
         }
 
-        redirect(`/login?msg=${errorWriteup}msgType=error`);
+        redirect(`/login?msgType=error&msg=Unforeseen error occured.`);
     }
 
-    console.log(data);
+    //Here=> no errors
+    console.log({ data });
     revalidatePath("/", "layout");
 
     redirect(
         encodeURI(
-            "/login?msg=Please check your email for magic link&msgType=success"
+            "/login?msg=Please check your email for magic link.&msgType=success"
         )
     );
 

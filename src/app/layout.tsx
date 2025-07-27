@@ -3,6 +3,7 @@ import "./globals.css";
 //Shared
 import { ResponsiveNavbarDemo } from "@/shared/components/ui/ResponsiveNavBar";
 import ThemeWrapper from "@/shared/components/theme-control/theme-wrapper";
+
 import {
     websiteSubFont,
     websiteTitle,
@@ -82,17 +83,6 @@ export const viewport = {
     initialScale: 1.0,
     themeColor: "#c13c3f", // Primary brand color; can also be an array of { media, color }
 };
-
-// IF YOU NEED DYNAMIC
-// Return a Viewport object dynamically:
-// export function generateViewport() {
-//   const isDarkMode = /* some server-side logic or default */;
-//   return {
-//     width:      "device-width",
-//     initialScale: 1.0,
-//     themeColor: isDarkMode ? "#000000" : "#ffffff",
-//   };
-// }
 
 export default function RootLayout({
     children,

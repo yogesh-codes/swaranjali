@@ -1,7 +1,7 @@
 import { DashBoardPage } from "@/features/dashboard/components/DashBoardPage";
 import React from "react";
 
-export const page = () => {
+const page = () => {
     return (
         <>
             <DashBoardPage />

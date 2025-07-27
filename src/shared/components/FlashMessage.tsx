@@ -3,17 +3,22 @@ import { IoIosWarning } from "react-icons/io";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaInfoCircle } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
-import clsx from "clsx";
+// import clsx from "clsx";
+
+export const allowedMsgTypes = ["success", "error", "warning", "info"] as const;
+export type AllowedMsgType = (typeof allowedMsgTypes)[number];
 
 export type FlashMessageProps = {
     msg: string;
-    msgType: string; //"success" | "error" | "info" | "warning" | null;
+    msgType: AllowedMsgType;
 };
 
 export const FlashMessage = (flash: FlashMessageProps) => {
     return (
-        <p
-            className={`
+        // flash.msgType
+        true && (
+            <p
+                className={`
                     px-4 py-2 rounded-md text-center
                     ${
                         flash.msgType === "success"
@@ -27,14 +32,15 @@ export const FlashMessage = (flash: FlashMessageProps) => {
                             : ""
                     }
                 `}
-        >
-            <span className="inline-block align-middle">
-                {flash.msgType == "success" && <FaCheckCircle className="" />}
-                {flash.msgType == "error" && <RxCross2 className="" />}
-                {flash.msgType == "warning" && <IoIosWarning className="" />}
-                {flash.msgType == "info" && <FaInfoCircle className="" />}
-            </span>
-            {" " + flash.msg}
-        </p>
+            >
+                <span className="inline-block align-middle">
+                    {flash.msgType == "success" && <FaCheckCircle />}
+                    {flash.msgType == "error" && <RxCross2 />}
+                    {flash.msgType == "warning" && <IoIosWarning />}
+                    {flash.msgType == "info" && <FaInfoCircle />}
+                </span>{" "}
+                <span>{flash.msg}</span>
+            </p>
+        )
     );
 };

@@ -1,15 +1,14 @@
-import { SparklesCore } from "@/shared/components/ui/sparkles";
 import MyPageContent from "@/shared/components/MyPageContent";
 import Button from "@/shared/components/Button";
 import Link from "next/link";
-import { websiteMainFont } from "@/shared/assets/websiteData";
 
-export default function VerifyQRCode({
+export default async function VerifyQRCode({
     params,
 }: {
-    params: { qrcode: string };
+    params: Promise<{ qrcode: string }>;
 }) {
-    const isVerified = params.qrcode === "YOGE-1234";
+    const QRCODE = (await params).qrcode;
+    const isVerified = QRCODE === "YOGE-1234";
 
     return (
         <section className="relative bg-primary min-h-[480px]">
@@ -20,7 +19,7 @@ export default function VerifyQRCode({
                         QR Code Verification
                     </h1>
 
-                    <p>{params.qrcode}</p>
+                    <p>{QRCODE}</p>
                     <div className="flex flex-col items-center justify-center">
                         <div className="bg-white p-6 rounded-2xl shadow-lg max-w-sm w-full text-center">
                             {isVerified ? (
