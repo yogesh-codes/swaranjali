@@ -1,43 +1,70 @@
-// app/hooks/useUser.ts
+// app/hooks/useSession.ts
 "use client";
-
 import { useState, useEffect } from "react";
-import { createBrowserSupabase } from "@/shared/utils/supabase/client";
-import type { Session } from "@supabase/supabase-js";
+import type { Session, AuthError, SupabaseClient } from "@supabase/supabase-js";
+import { createBrowserSupabase } from "./client";
 
 export function useSession() {
     const [session, setSession] = useState<Session | null>(null);
+    const [error, setError] = useState<AuthError | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const supabase = createBrowserSupabase();
-        let mounted = true;
-        let subscriptionCleanup: (() => void) | null = null;
+        let supabase: undefined | SupabaseClient;
 
-        async function init() {
-            // 1. fetch current session
-            try {
-                const { data } = await supabase.auth.getSession();
-                if (mounted) setSession(data.session ?? null);
-            } catch (err) {
-                console.error("getSession error:", err);
+        let mounted = true; // ◀︎ mounted guard
+        let cleanup: () => void; // ◀︎ for the subscription
+
+        try {
+            supabase = createBrowserSupabase();
+        } catch (err) {
+            if (mounted) {
+                setSession(null);
+                setError(err);
+                setIsLoading(false);
             }
-
-            // 2. subscribe to future changes
-            const {
-                data: { subscription },
-            } = supabase.auth.onAuthStateChange((_event, session) => {
-                if (mounted) setSession(session ?? null);
-            });
-            subscriptionCleanup = () => subscription.unsubscribe();
         }
 
-        void init();
+        {
+            async function init() {
+                if (supabase !== undefined) {
+                    try {
+                        // 1) fetch initial session
+                        const { data, error: authError } =
+                            await supabase.auth.getSession();
+                        if (authError) throw authError;
+                        if (mounted) setSession(data.session);
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    } catch (err: any) {
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+                        if (mounted) setError(err);
+                    } finally {
+                        if (mounted) setIsLoading(false);
+                    }
 
-        return () => {
-            mounted = false;
-            subscriptionCleanup?.();
-        };
+                    // 2) subscribe to future changes
+                    const {
+                        data: { subscription },
+                    } = supabase.auth.onAuthStateChange(
+                        (_event, newSession) => {
+                            if (mounted) setSession(newSession);
+                        }
+                    );
+
+                    cleanup = () => subscription.unsubscribe();
+                }
+            }
+
+            // kick it off
+            console.log("supabase is now ", supabase);
+            void init();
+
+            return () => {
+                mounted = false;
+                cleanup?.();
+            };
+        }
     }, []);
 
-    return session;
+    return { session, error, isLoading };
 }

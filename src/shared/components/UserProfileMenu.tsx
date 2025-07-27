@@ -14,31 +14,44 @@ import { useSession } from "../utils/supabase/useSession";
 //supabase
 
 export const UserProfileMenu = () => {
-    const session = useSession();
+    const { session, error } = useSession();
 
-    return (
-        <NavbarButton
-            as="a"
-            variant={session ? "primary" : "transparent"}
-            href={session ? "/logout" : "/login"}
-            className="min-w-fit max-w-full"
-        >
-            <div className="flex items-center justify-center">
-                {session && (
-                    <>
-                        <FaCircleUser />
-                        {/* <span>{session.user.email?.slice(0, 4)}-</span> */}
-                        <span>Logout</span>
-                    </>
-                )}
-                {!session && (
-                    <>
-                        <FaRegCircleUser />
+    if (error) {
+        return (
+            <NavbarButton
+                as="div"
+                variant="primary"
+                className="min-w-fit max-w-full"
+            >
+                X
+            </NavbarButton>
+        );
+    }
+    //here=>no error, either logged in or out
+    else
+        return (
+            <NavbarButton
+                as="a"
+                variant={session ? "primary" : "transparent"}
+                href={session ? "/logout" : "/login"}
+                className="min-w-fit max-w-full"
+            >
+                <div className="flex items-center justify-center">
+                    {session && (
+                        <>
+                            <FaCircleUser />
+                            {/* <span>{session.user.email?.slice(0, 4)}-</span> */}
+                            <span>Logout</span>
+                        </>
+                    )}
+                    {!session && (
+                        <>
+                            <FaRegCircleUser />
 
-                        <div>Sign in/Sign Up</div>
-                    </>
-                )}
-            </div>
-        </NavbarButton>
-    );
+                            <div>Sign in/Sign Up</div>
+                        </>
+                    )}
+                </div>
+            </NavbarButton>
+        );
 };
