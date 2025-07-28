@@ -1,5 +1,5 @@
 "use client";
-import React, { useActionState } from "react";
+import React, { useActionState, useEffect } from "react";
 
 //shared
 import Button from "@/shared/components/Button";
@@ -21,15 +21,8 @@ const LoginWithMagicLinkForm = ({
 
     return (
         <>
-            {flashFromCookies && (
-                <FlashComponent
-                    msgType={flashFromCookies.msgType}
-                    msg={flashFromCookies.msg}
-                />
-            )}
-            {state && (
-                <FlashComponent msgType={state.msgType} msg={state.msg} />
-            )}
+            {flashFromCookies && <FlashComponent flash={flashFromCookies} />}
+            {state && <FlashComponent flash={state} />}
             <form
                 action={formAction}
                 className="s:min-w-screen sm:min-w-80 md:min-w-140"

@@ -18,8 +18,6 @@ export default async function MyLoginPage() {
 
     const flash = parseFlash(raw);
 
-    console.log(raw);
-    console.log(flash);
     return (
         <MyPageSection>
             <MyPageContent
