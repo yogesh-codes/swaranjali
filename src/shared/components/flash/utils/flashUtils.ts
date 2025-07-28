@@ -10,7 +10,7 @@ function isFlash(obj: unknown): obj is FlashType {
 
         if (typeof rec.msg !== "string") return false;
         if (typeof rec.msgType !== "string") return false;
-        if (ALLOWED_MSG_TYPES.includes(rec.msgType as MsgType)) return false;
+        if (!ALLOWED_MSG_TYPES.includes(rec.msgType as MsgType)) return false;
         //Note: using 'as' will only silence typescript and, only use when abs
 
         return true;
