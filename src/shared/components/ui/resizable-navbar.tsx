@@ -303,7 +303,7 @@ export const NavbarButton = ({
     | React.ComponentPropsWithoutRef<"button">
 )) => {
     const baseStyles =
-        "px-4 py-2 rounded-md button bg-n-100 text-pureblack relative cursor-pointer hover:-translate-y-0.5 transition duration-200 text-center";
+        "px-4 py-2 rounded-md button bg-n-100 text-pureblack relative hover:-translate-y-0.5 transition duration-200 text-center";
 
     const variantStyles = {
         primary: "text-purewhite bg-primary-500 ",
