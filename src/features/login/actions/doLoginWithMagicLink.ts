@@ -3,32 +3,32 @@
 
 import { createServerSupabase } from "@/shared/utils/supabase/server";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 
-export async function doLoginAction(formData: FormData) {
+export type ReturnMsg = {
+    msg: string;
+    msgType: "success" | "error" | "warning" | "info";
+} | null;
+
+export async function doLoginAction(
+    prevState: ReturnMsg,
+    formData: FormData
+): Promise<ReturnMsg> {
     const userEmail = formData.get("email") as string;
     const supabase = await createServerSupabase();
 
-    const PROJECT_SITE_URL = process.env.PROJECT_SITE_URL!;
+    const PROJECT_SITE_URL = process.env.PROJECT_SITE_URL;
+    //sanity
+    if (!PROJECT_SITE_URL) {
+        throw new Error("Missing required env var: {PROJECT_SITE_URL}");
+    }
+
     console.log(`ProjectBaseUrl is ${PROJECT_SITE_URL}`);
 
-    // console.log("base url is", myProjectBaseUrl);
-
-    // //defensive, in case
-    // if (!myProjectBaseUrl) {
-    //     console.error("Invalid Project Base URL", myProjectBaseUrl);
-    //     return {
-    //         status: "error",
-    //         message: "Error from our end (Invalid project base url)",
-    //     };
-    // }
-
-    // inside a Route Handler or API route where you have access to the incoming Request
     const { origin } = new URL(PROJECT_SITE_URL); // “http://localhost:3000” or “https://johnm.com”
     const redirectUrl = new URL("/auth/confirm", origin); // build the absolute URL
     redirectUrl.searchParams.set("next", "/dashboard"); // add your post-login path
 
-    const { error: authError, data } = await supabase.auth.signInWithOtp({
+    const { error: authError } = await supabase.auth.signInWithOtp({
         email: userEmail,
         options: {
             //PROJECT_SITE_URL will be localhost3000 or swaranjali
@@ -42,40 +42,40 @@ export async function doLoginAction(formData: FormData) {
     });
 
     if (authError) {
-        console.log({ authError });
-        console.log(authError.name);
-
         console.log("code=" + authError.code);
         console.log("message=" + authError.message);
-        if (authError.message === "Signups not allowed for otp") {
-            redirect(
-                encodeURI("/login?msgType=error&msg=Account doesn't exist.")
-            );
-        } else if (authError.status?.toString().startsWith("4")) {
-            redirect(encodeURI("/login?msgType=error&msg=Some error occured."));
-        } else if (authError.status?.toString().startsWith("5")) {
-            redirect(
-                encodeURI(
-                    "/login?msgType=error&msg=An internal server error occured. Please try again later."
-                )
-            );
-        }
 
-        redirect(`/login?msgType=error&msg=Unforeseen error occured.`);
+        if (authError.message === "Signups not allowed for otp") {
+            return {
+                msg: "Please Signup first",
+                msgType: "error",
+            };
+        } else if (authError.status?.toString().startsWith("4")) {
+            console.warn(JSON.stringify(authError));
+            return {
+                msg: authError.name + "; " + authError.message,
+                msgType: "error",
+            };
+        } else if (authError.status?.toString().startsWith("4")) {
+            console.warn(JSON.stringify(authError));
+            return {
+                msg: "Some error occured.",
+                msgType: "error",
+            };
+        } else {
+            return {
+                msg: "AuthError. Some error occured.",
+                msgType: "error",
+            };
+        }
     }
 
     //Here=> no errors
-    console.log({ data });
+
     revalidatePath("/", "layout");
 
-    redirect(
-        encodeURI(
-            "/login?msg=Please check your email for magic link.&msgType=success"
-        )
-    );
-
-    //     return {
-    //         success: true,
-    //         message: "A one-time link has been sent to your inbox.",
-    //     };
+    return {
+        msg: "Please check your email for login link.",
+        msgType: "success",
+    };
 }

@@ -1,5 +1,5 @@
 import { type EmailOtpType } from "@supabase/supabase-js";
-import { type NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { createServerSupabase } from "@/shared/utils/supabase/server";
 import { NextURL } from "next/dist/server/web/next-url";
@@ -52,17 +52,25 @@ export async function GET(request: NextRequest) {
         if (err) {
             redirectTo.searchParams.delete("next");
             redirectTo.pathname = `/login`;
-            if (err.message)
-                redirectTo.searchParams.set("msg", err.message.toString());
-            else
-                redirectTo.searchParams.set(
-                    "msg",
-                    `An error occured;${err.name}`
-                );
 
-            redirectTo.searchParams.set("msgType", "error");
+            const msgPayloadString = {
+                msg: err.name + "; " + err.message,
+                msgType: "warning",
+            };
 
-            return NextResponse.redirect(redirectTo);
+            const res = NextResponse.redirect(new URL("/login", request.url));
+            // Set a “flash” cookie that expires immediately after you read it
+            res.cookies.set("flash", JSON.stringify(msgPayloadString), {
+                path: "/login",
+                httpOnly: true,
+                sameSite: "lax",
+                maxAge: 60,
+            });
+
+            console.warn(
+                "link is invalid.setting cookies and redirecting to /login."
+            );
+            return res;
         } else {
             redirectTo.searchParams.delete("next");
             console.log("redirecting to ", { redirectTo });

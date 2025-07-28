@@ -23,6 +23,7 @@ export default function LogoutPage() {
                     "error thrown while trying to logout. shouldnt have happened."
                 );
             } finally {
+                window.location.assign("/");
                 router.refresh();
                 router.replace("/");
                 // once the POST completes (or errors), send them to /login
@@ -33,18 +34,17 @@ export default function LogoutPage() {
     }, [router]);
 
     return (
-        <div className="flex items-center justify-center h-screen px-4">
+        <div className="flex flex-col items-center justify-center px-4">
             <div className="text-center">
-                <h1 className="text-xl font-semibold mb-2">Signing you out…</h1>
-                <p className="text-sm text-gray-600">Redirecting to login</p>
+                <h1 className="">Signing you out…</h1>
+                <p className="text-sm text-n-600">Redirecting to login</p>
             </div>
-            <p>
-                In case sign out fails, click here to manually go to homepage
-                anyway
-            </p>
 
             <p>{msg}</p>
-            <Button variant="primary">Click here</Button>
+            <p>In case sign out fails</p>
+            <Button onClick={() => router.replace("/")} variant="primary">
+                Click here
+            </Button>
         </div>
     );
 }

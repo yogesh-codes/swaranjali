@@ -6,7 +6,7 @@ import { createBrowserSupabase } from "./client";
 
 export function useSession() {
     const [session, setSession] = useState<Session | null>(null);
-    const [error, setError] = useState<AuthError | null>(null);
+    const [error, setError] = useState<Error | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ export function useSession() {
         } catch (err) {
             if (mounted) {
                 setSession(null);
-                setError(err);
+                setError(err as Error);
                 setIsLoading(false);
             }
         }

@@ -8,23 +8,22 @@ import MyPageContent from "@/shared/components/MyPageContent";
 
 //components
 import LoginWithMagicLinkForm from "./LoginWithMagicLinkForm";
-import {
-    FlashMessage,
-    FlashMessageProps,
-} from "../../../shared/components/FlashMessage";
+import { cookies } from "next/headers";
+import { parseFlash } from "../utils/flashUtils";
 
-//Server Actions
-import { doLoginAction } from "../actions/doLoginWithMagicLink";
+export default async function MyLoginPage() {
+    //Check cookies for any flash message
+    const cookieStore = await cookies();
+    const raw = cookieStore.get("flash")?.value;
 
-export type LoginPageProps = {
-    flash?: FlashMessageProps;
-};
+    const flash = parseFlash(raw);
 
-export default function MyLoginPage({ flash }: LoginPageProps) {
+    console.log(raw);
+    console.log(flash);
     return (
         <MyPageSection>
             <MyPageContent
-                className=" bg-accent-200/0 
+                className="pt-20  
                 items-center 
                 gap-y-5
                 
@@ -32,11 +31,9 @@ export default function MyLoginPage({ flash }: LoginPageProps) {
             >
                 <h1 className="mb-4 text-puredark text-center">Login</h1>
 
-                {/* Flash messages*/}
-                {flash && <FlashMessage {...flash} />}
-
-                {/* Client */}
-                <LoginWithMagicLinkForm handleOnAction={doLoginAction} />
+                {/* Form Client Component*/}
+                {/* <LoginWithMagicLinkForm handleOnAction={doLoginAction} /> */}
+                {flash && <LoginWithMagicLinkForm flashFromCookies={flash} />}
 
                 {/*Other Links*/}
                 <div className="">

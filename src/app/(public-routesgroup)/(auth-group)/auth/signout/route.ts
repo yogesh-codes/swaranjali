@@ -1,6 +1,7 @@
 // app/logout/route.ts
 import { NextResponse } from "next/server";
 import { createServerSupabase } from "@/shared/utils/supabase/server";
+import { revalidatePath } from "next/cache";
 
 export async function POST() {
     const supabase = await createServerSupabase();
@@ -20,5 +21,6 @@ export async function POST() {
     }
 
     // Optionally clear any cookies here if you set them manually
+    revalidatePath("/", "layout");
     return NextResponse.json({ success: true });
 }

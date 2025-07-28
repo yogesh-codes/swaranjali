@@ -6,3 +6,5 @@ export function createBrowserSupabase() {
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
     );
 }
+
+//Note: This will throw an unhandled error if keys are misconfigured.

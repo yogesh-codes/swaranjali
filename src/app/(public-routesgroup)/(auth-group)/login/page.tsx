@@ -1,19 +1,8 @@
 import { redirect } from "next/navigation";
 import { createServerSupabase } from "@/shared/utils/supabase/server";
 import MyLoginPage from "@/features/login/components/MyLoginPage";
-import {
-    AllowedMsgType,
-    allowedMsgTypes,
-} from "@/shared/components/FlashMessage";
 
-export default async function Page({
-    searchParams,
-}: {
-    searchParams: Promise<{
-        msg?: string;
-        msgType?: string;
-    }>;
-}) {
+export default async function Page() {
     //If logged in, redirect..
     const supabase = await createServerSupabase();
     const {
@@ -28,14 +17,5 @@ export default async function Page({
     }
 
     //So not logged in yet
-
-    const { msg, msgType } = await searchParams;
-
-    if (msg && msgType && allowedMsgTypes.includes(msgType as AllowedMsgType)) {
-        return (
-            <MyLoginPage
-                flash={{ msg: msg, msgType: msgType as AllowedMsgType }}
-            />
-        );
-    } else return <MyLoginPage />;
+    return <MyLoginPage />;
 }
