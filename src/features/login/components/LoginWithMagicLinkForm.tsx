@@ -1,20 +1,18 @@
 "use client";
-
-import Button from "@/shared/components/Button";
-// import MyPageContent from "@/shared/components/MyPageContent";
-// import Link from "next/link";
 import React, { useActionState } from "react";
-import { doLoginAction, ReturnMsg } from "../actions/doLoginWithMagicLink";
-import { FlashMessage } from "@/shared/components/FlashMessage";
 
-// type Props = {
-//     handleOnAction: (e: FormData) => Promise<void>;
-// };
+//shared
+import Button from "@/shared/components/Button";
+import { FlashComponent } from "@/shared/components/flash/components/FlashMessage";
+import { type FlashType } from "@/shared/components/flash/utils/flashUtils";
+
+//self
+import { doLoginAction, ReturnMsg } from "../actions/doLoginWithMagicLink";
 
 const LoginWithMagicLinkForm = ({
     flashFromCookies,
 }: {
-    flashFromCookies?: { msg: string; msgType: string };
+    flashFromCookies?: FlashType | null;
 }) => {
     const [state, formAction, isPending] = useActionState<ReturnMsg, FormData>(
         doLoginAction,
@@ -24,16 +22,17 @@ const LoginWithMagicLinkForm = ({
     return (
         <>
             {flashFromCookies && (
-                <FlashMessage
+                <FlashComponent
                     msgType={flashFromCookies.msgType}
                     msg={flashFromCookies.msg}
                 />
             )}
-
-            {state && <FlashMessage msgType={state.msgType} msg={state.msg} />}
+            {state && (
+                <FlashComponent msgType={state.msgType} msg={state.msg} />
+            )}
             <form
                 action={formAction}
-                className="xs:min-w-screen sm:min-w-80 md:min-w-140"
+                className="s:min-w-screen sm:min-w-80 md:min-w-140"
             >
                 <div
                     className="flex flex-col gap-0 items-center px-0 py-0 rounded-lg

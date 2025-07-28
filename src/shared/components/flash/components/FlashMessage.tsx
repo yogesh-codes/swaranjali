@@ -13,7 +13,7 @@ export type FlashMessageProps = {
     msgType: AllowedMsgType;
 };
 
-export const FlashMessage = (flash: FlashMessageProps) => {
+export const FlashComponent = (flash: FlashMessageProps) => {
     return (
         // flash.msgType
         true && (

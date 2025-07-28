@@ -1,10 +1,10 @@
 const ALLOWED_MSG_TYPES = ["success", "error", "info", "warning"] as const;
 type MsgType = (typeof ALLOWED_MSG_TYPES)[number];
 
-type Flash = { msg: string; msgType: MsgType };
+export type FlashType = { msg: string; msgType: MsgType };
 
 // 1) our user-defined type guard
-function isFlash(obj: unknown): obj is Flash {
+function isFlash(obj: unknown): obj is FlashType {
     if (typeof obj === "object" && obj !== null) {
         const rec = obj as Record<string, unknown>;
 
@@ -18,7 +18,7 @@ function isFlash(obj: unknown): obj is Flash {
     return false;
 }
 
-export function parseFlash(raw: string | undefined): Flash | null {
+export function parseFlash(raw: string | undefined): FlashType | null {
     //If no raw message to begin with, directly return null
     if (!raw) return null;
     //Otherwise, try to parse

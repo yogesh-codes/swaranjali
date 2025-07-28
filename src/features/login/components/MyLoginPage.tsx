@@ -9,7 +9,7 @@ import MyPageContent from "@/shared/components/MyPageContent";
 //components
 import LoginWithMagicLinkForm from "./LoginWithMagicLinkForm";
 import { cookies } from "next/headers";
-import { parseFlash } from "../utils/flashUtils";
+import { parseFlash } from "@/shared/components/flash/utils/flashUtils";
 
 export default async function MyLoginPage() {
     //Check cookies for any flash message
@@ -33,7 +33,7 @@ export default async function MyLoginPage() {
 
                 {/* Form Client Component*/}
                 {/* <LoginWithMagicLinkForm handleOnAction={doLoginAction} /> */}
-                {flash && <LoginWithMagicLinkForm flashFromCookies={flash} />}
+                {<LoginWithMagicLinkForm flashFromCookies={flash} />}
 
                 {/*Other Links*/}
                 <div className="">
