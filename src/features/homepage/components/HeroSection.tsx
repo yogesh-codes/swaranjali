@@ -23,7 +23,7 @@ import EventAnnouncementContainer from "./EventAnnouncementContainer";
 const HeroSection = () => {
     return (
         <section className="relative bg-primary min-h-[480px]">
-            <div className="absolute z-[99] pointer-events-none w-full inset-0 h-[fit]">
+            <div className="absolute z-[10] pointer-events-none w-full inset-0 h-[fit]">
                 <SparklesCore
                     id="tsparticlesfullpage"
                     background="transparent"
