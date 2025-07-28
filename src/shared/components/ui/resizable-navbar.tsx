@@ -244,17 +244,11 @@ export const MobileNavToggle = ({
     onClick: () => void;
 }) => {
     return (
-        <button>
+        <button onClick={onClick}>
             {isOpen ? (
-                <RxCross2 className="text-ndark text-3xl" onClick={onClick} />
+                <RxCross2 className="text-ndark text-3xl" />
             ) : (
-                <RxHamburgerMenu
-                    className="text-ndark text-3xl"
-                    onClick={() => {
-                        onClick();
-                        // isOpen = false;
-                    }}
-                />
+                <RxHamburgerMenu className="text-ndark text-3xl" />
             )}
         </button>
     );
