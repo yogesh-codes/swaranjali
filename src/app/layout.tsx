@@ -1,7 +1,7 @@
 import "./globals.css";
 
 //Shared
-import { ResponsiveNavbarDemo } from "@/shared/components/ui/ResponsiveNavBar";
+import { ResponsiveNavbarDemo } from "@/shared/components/Navbar/ResponsiveNavBar";
 import ThemeWrapper from "@/shared/components/theme-control/theme-wrapper";
 
 import {

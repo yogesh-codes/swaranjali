@@ -13,8 +13,8 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 
-import ThemeControlMenu from "@/shared/components/theme-control/ThemeControlMenu";
-import { UserProfileMenu } from "../UserProfileMenu";
+import ThemeControlMenu from "./ThemeControlMenu";
+import { UserProfileMenu } from "./UserProfileMenu";
 
 export function ResponsiveNavbarDemo() {
     const navItems = [
@@ -40,15 +40,20 @@ export function ResponsiveNavbarDemo() {
                     <NavItems items={navItems} />
                 </div>
                 {/* Button Links */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                     <NavbarButton variant="transparent" as={"div"}>
                         <ThemeControlMenu />
                     </NavbarButton>
 
                     <UserProfileMenu />
 
-                    <NavbarButton variant="accent" as={"a"} href="/contact">
-                        Contact Us
+                    <NavbarButton
+                        className="w-fit"
+                        variant="accent"
+                        as={"a"}
+                        href="/contact"
+                    >
+                        {"Contact Us"}
                     </NavbarButton>
                 </div>
             </NavBody>
@@ -88,7 +93,7 @@ export function ResponsiveNavbarDemo() {
                             <ThemeControlMenu />
                         </NavbarButton>
 
-                        <UserProfileMenu />
+                        <UserProfileMenu extendedClassName="w-full" />
 
                         <NavbarButton
                             onClick={() => setIsMobileMenuOpen(false)}

@@ -5,6 +5,13 @@
         "*.scss": "tailwindcss"
     },
 
+    // Tell Tailwind-CSS IntelliSense which attributes hold class lists
+    "tailwindCSS.classAttributes": [
+        "class", // default HTML
+        "className", // React
+        "extendedClassName" // your custom prop
+    ],
+
     "markdownlint.config": { "list-marker-space": false },
 
     "explorer.sortOrder": "type",

@@ -1,28 +1,27 @@
 "use client";
 //import
-import Link from "next/link";
 
 //Assets
 import { FaCircleUser } from "react-icons/fa6";
 import { FaRegCircleUser } from "react-icons/fa6";
-import { NavbarButton } from "./ui/resizable-navbar";
+import { NavbarButton } from "../ui/resizable-navbar";
 
 //shared
-import { useSession } from "../utils/supabase/useSession";
+import { useSession } from "@/shared/utils/supabase/useSession";
 //components
 
 //supabase
 
-export const UserProfileMenu = () => {
+export const UserProfileMenu = ({
+    extendedClassName,
+}: {
+    extendedClassName?: string;
+}) => {
     const { session, error } = useSession();
 
     if (error) {
         return (
-            <NavbarButton
-                as="div"
-                variant="primary"
-                className="min-w-fit max-w-full"
-            >
+            <NavbarButton as="div" variant="primary" className="">
                 X
             </NavbarButton>
         );
@@ -32,9 +31,9 @@ export const UserProfileMenu = () => {
         return (
             <NavbarButton
                 as="a"
-                variant={session ? "primary" : "transparent"}
+                variant={"primary"}
                 href={session ? "/logout" : "/login"}
-                className="min-w-fit max-w-full"
+                className={`${extendedClassName}`}
             >
                 <div className="flex items-center justify-center">
                     {session && (
@@ -48,7 +47,7 @@ export const UserProfileMenu = () => {
                         <>
                             <FaRegCircleUser />
 
-                            <div>Sign in/Sign Up</div>
+                            <div>Sign In</div>
                         </>
                     )}
                 </div>
